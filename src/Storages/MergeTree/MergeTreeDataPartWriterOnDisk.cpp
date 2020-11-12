@@ -42,7 +42,8 @@ MergeTreeDataPartWriterOnDisk::Stream::Stream(
     data_file_extension{data_file_extension_},
     marks_file_extension{marks_file_extension_},
     plain_file(disk_->writeFile(data_path_ + data_file_extension, max_compress_block_size_, WriteMode::Rewrite, estimated_size_, aio_threshold_)),
-    plain_hashing(*plain_file), compressed_buf(plain_hashing, compression_codec_), compressed(compressed_buf),
+    plain_hashing(*plain_file, max_compress_block_size_), compressed_buf(plain_hashing, compression_codec_, max_compress_block_size_),
+    compressed(compressed_buf, max_compress_block_size_),
     marks_file(disk_->writeFile(marks_path_ + marks_file_extension, 4096, WriteMode::Rewrite)), marks(*marks_file)
 {
 }
