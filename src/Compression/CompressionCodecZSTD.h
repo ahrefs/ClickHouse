@@ -12,7 +12,7 @@ class CompressionCodecZSTD : public ICompressionCodec
 {
 public:
     static constexpr auto ZSTD_DEFAULT_LEVEL = 1;
-    static constexpr auto ZSTD_DEFAULT_LOG_WINDOW = 30;
+    static constexpr auto ZSTD_DEFAULT_LOG_WINDOW = 24;
 
     CompressionCodecZSTD(int level_);
 
